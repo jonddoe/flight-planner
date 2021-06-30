@@ -94,27 +94,11 @@ namespace FlightPlanner.Controllers
         private static bool IsNotInStorage(AddFlightRequest newFlight)
         {
             return FlightStorage.AllFlights.Any(f =>
-            {
-                if (f.ArrivalTime != newFlight.ArrivalTime || f.DepartureTime != newFlight.DepartureTime)
-                {
-                    return false;
-                }
-
-                if (f.Carrier.ToLower().Trim() != newFlight.Carrier.ToLower().Trim())
-                {
-                    return false;
-                }
-
-                if (f.From.AirportName.ToLower().Trim() != newFlight.From.AirportName.ToLower().Trim())
-                {
-                    return false;
-                }
-
-                return true;
-
-            });
+                f.ArrivalTime == newFlight.ArrivalTime && f.DepartureTime == newFlight.DepartureTime &&
+                f.Carrier.ToLower().Trim() == newFlight.Carrier.ToLower().Trim() &&
+                f.From.AirportName.ToLower().Trim() == newFlight.From.AirportName.ToLower().Trim());
         }
-        
+
         [Route("admin-api/flights/{id:int}")]
         [HttpDelete]
         public IHttpActionResult DeleteFlight(int id)

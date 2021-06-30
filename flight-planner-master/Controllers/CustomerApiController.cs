@@ -80,9 +80,9 @@ namespace FlightPlanner.Controllers
                 return true;
             }
 
-            return (
+            return 
                 string.IsNullOrEmpty(flight.To) || string.IsNullOrEmpty(flight.DepartureDate) ||
-                string.IsNullOrEmpty(flight.From));
+                string.IsNullOrEmpty(flight.From);
         }
 
         private static bool IsToAndFromAirportsTheSame(SearchFlightsRequest flight)
